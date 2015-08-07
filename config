@@ -175,5 +175,4 @@ bindsym $mod+l exec i3lock -i /usr/share/backgrounds/warty-final-ubuntu.png
 exec --no-startup-id nm-applet
 
 # tk_ caps lock to $mod
-#exec xmodmap -e "clear lock"
-#exec xmodmap -e "keysym Caps_Lock = Super_L"
+exec setxkbmap -option caps:super
