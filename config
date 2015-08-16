@@ -176,3 +176,7 @@ exec --no-startup-id nm-applet
 
 # tk_ caps lock to $mod
 exec setxkbmap -option caps:super
+
+# tk_ add application shortcuts
+bindsym $mod+Control+period exec nautilus --no-desktop
+bindsym $mod+Control+o exec unity-control-center
