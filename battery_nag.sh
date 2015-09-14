@@ -2,8 +2,8 @@
 
 export DISPLAY=:0
 
-LOW_PERCENTAGE=15
-VERY_LOW_PERCENTAGE=5
+LOW_PERCENTAGE=12
+VERY_LOW_PERCENTAGE=7
 
 battery_percentage=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $NF'} | tr -d '%'`
 battery_status=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk '{print $NF'}`
