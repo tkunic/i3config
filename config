@@ -180,3 +180,7 @@ exec setxkbmap -option caps:super
 # tk_ add application shortcuts
 bindsym $mod+Control+period exec nautilus --no-desktop
 bindsym $mod+Control+o exec unity-control-center
+
+# tk_ move workspaces between monitors
+bindsym $mod+Control+Shift+h move workspace to output left
+bindsym $mod+Control+Shift+s move workspace to output right
