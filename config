@@ -163,10 +163,8 @@ bindsym XF86AudioMicMute exec amixer -D pulse sset Capture toggle
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# tk_ touchpad
+# tk_ mouse
 focus_follows_mouse no
-exec synclient MaxTapTime=0
-exec synclient HorizTwoFingerScroll=1
 
 # tk_ locking
 bindsym $mod+l exec i3lock -i /usr/share/backgrounds/warty-final-ubuntu.png
