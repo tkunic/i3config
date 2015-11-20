@@ -1,9 +1,13 @@
 #!/bin/bash
 
-if [ $# -lt 2 ]
-then
+usage(){
     echo "USAGE: $0 [VGA/DP] [left/right/above/below/same/off]"
     exit 1
+}
+
+if [ $# -lt 2 ]
+then
+    usage
 fi
 
 if [ $1 = "VGA" ]
@@ -13,7 +17,7 @@ elif [ $1 = "DP" ]
 then
     OUT="HDMI1"
 else
-    echo "ERROR: Unrecognized option $1"
+    usage
 fi
 
 if [ $2 = "left" ]
@@ -34,6 +38,8 @@ then
 elif [ $2 = "off" ]
 then
     ACTION="--off"
+else
+    usage
 fi
 
 xrandr --output $OUT $ACTION
