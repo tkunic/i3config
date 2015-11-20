@@ -10,7 +10,7 @@ battery_status=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep st
 
 if [ $battery_percentage -lt $LOW_PERCENTAGE ] && [ $battery_status = 'discharging' ]
 then
-    i3-nagbar -m "Battery is at $battery_percentage%!" -b 'Suspend' 'systemctl suspend'
+    i3-nagbar -m "Battery is at $battery_percentage%!" -b 'Suspend' 'systemctl suspend'&
     if [ $battery_percentage -lt $VERY_LOW_PERCENTAGE ]
     then
         # The battery too low, to prevent violent poweroff, suspend computer.
