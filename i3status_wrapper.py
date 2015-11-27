@@ -31,11 +31,11 @@ import psutil
 BYTES_IN_GB = 1073741824.0
 
 def get_total_gb():
-    total_b = psutil.phymem_usage().total
+    total_b = psutil.virtual_memory().total
     return total_b / BYTES_IN_GB
 
 def get_used_gb():
-    memusage = psutil.phymem_usage()
+    memusage = psutil.virtual_memory()
     used_b = memusage.total - memusage.available
     return used_b / BYTES_IN_GB
 
