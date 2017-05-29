@@ -8,4 +8,5 @@ Includes:
 - Touchpad tweaks.
 - Quick script to configure monitors using xrandr.
 - Hacky i3status prepender (adds memory information, second battery, and paints hardware info blue).
+- i3status TimeWarrior integration script.
 - And other minor things...
