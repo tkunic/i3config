@@ -28,6 +28,8 @@ import sys
 import json
 import psutil
 
+from timew import TimeWD
+
 BYTES_IN_GB = 1073741824.0
 
 def get_total_gb():
@@ -65,6 +67,10 @@ def read_line():
 if __name__ == '__main__':
     TOTAL_GB = get_total_gb()
 
+    # Init timewd querying
+    timewd = TimeWD()
+    timewd.start()
+
     # Skip the first line which contains the version header.
     print_line(read_line())
 
@@ -87,6 +93,9 @@ if __name__ == '__main__':
         j[2]['color'] = '#45A2FF'
         j[3]['color'] = '#45A2FF'
         j[4]['color'] = '#45A2FF'
+
+        # TimeWarrior prefix
+        j.insert(0, {'full_text': timewd.get_current_task_line(), 'name': 'timew'})
 
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
