@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage(){
-    echo "USAGE: $0 [VGA/DP] [left/right/above/below/same/off]"
+    echo "USAGE: $0 [main/VGA/DP] [left/right/above/below/same/off]"
     exit 1
 }
 
@@ -16,6 +16,9 @@ then
 elif [ $1 = "DP" ]
 then
     OUT="HDMI1"
+elif [ $1 = "main" ]
+then
+    OUT="eDP1"
 else
     usage
 fi
