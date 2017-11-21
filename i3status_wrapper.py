@@ -30,26 +30,33 @@ import psutil
 
 from timew import TimeWD
 
+
 BYTES_IN_GB = 1073741824.0
+COLOR_BLUE = '#45A2FF'
+
 
 def get_total_gb():
     total_b = psutil.virtual_memory().total
     return total_b / BYTES_IN_GB
+
 
 def get_used_gb():
     memusage = psutil.virtual_memory()
     used_b = memusage.total - memusage.available
     return used_b / BYTES_IN_GB
 
+
 def get_governor():
     """ Get the current governor for cpu0, assuming all CPUs use the same. """
     with open('/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor') as fp:
         return fp.readlines()[0].strip()
 
+
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
     sys.stdout.flush()
+
 
 def read_line():
     """ Interrupted respecting reader for stdin. """
@@ -63,6 +70,7 @@ def read_line():
     # exit on ctrl-c
     except KeyboardInterrupt:
         sys.exit()
+
 
 if __name__ == '__main__':
     TOTAL_GB = get_total_gb()
@@ -86,17 +94,16 @@ if __name__ == '__main__':
         j = json.loads(line)
         # insert information into the start of the json, but could be anywhere
         # CHANGE THIS LINE TO INSERT SOMETHING ELSE
-        j.insert(0, {'color': '#45A2FF', 'full_text' : 'MEM: %.2f GiB / %.2f GiB' % (get_used_gb(), TOTAL_GB), 'name' : 'mem'})
+        j.insert(0, {'color': COLOR_BLUE, 'full_text': 'MEM: %.2f GiB / %.2f GiB' % (get_used_gb(), TOTAL_GB), 'name': 'mem'})
 
         # Make CPU, HDD blue
-        j[1]['color'] = '#45A2FF'
-        j[2]['color'] = '#45A2FF'
-        j[3]['color'] = '#45A2FF'
-        j[4]['color'] = '#45A2FF'
+        j[1]['color'] = COLOR_BLUE
+        j[2]['color'] = COLOR_BLUE
+        j[3]['color'] = COLOR_BLUE
+        j[4]['color'] = COLOR_BLUE
 
         # TimeWarrior prefix
         j.insert(0, {'full_text': timewd.get_current_task_line(), 'name': 'timew'})
 
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
-

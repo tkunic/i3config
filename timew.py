@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
 import threading
+from subprocess import check_output, CalledProcessError
+
 import pytz
 
-from subprocess import check_output, CalledProcessError
 
 TIMEZONE = pytz.timezone("America/Toronto")
 
 
-class TimeWD:
+class TimeWD(object):
     def __init__(self):
         self.current_task_line = "Updating task info..."
         self.daily_total_line = "00:00"
@@ -40,13 +41,13 @@ class TimeWD:
                 total=self.daily_total_line)
         except CalledProcessError:
             self.current_task_line = "No task running. [{total}]".format(total=self.daily_total_line)
-        except: # Catch-all, don't crash i3bar
+        except:  # pylint: disable=bare-except
             self.current_task_line = "Current task query failed."
 
         self.current_task_update_status = "IDLE"
 
     def _update_daily_total_line(self):
-        if self.current_task_update_status != "IDLE": # HACK
+        if self.current_task_update_status != "IDLE":  # HACK
             return
 
         try:
@@ -59,18 +60,19 @@ class TimeWD:
 
         except CalledProcessError:
             self.current_task_line = "'timew day' call failed."
-        except:
+        except:  # pylint: disable=bare-except
             self.current_task_line = "Daily total query failed."
 
     def _cts_update_current_task_line(self):
         self._update_current_task_line()
-        t = threading.Timer(5, self._cts_update_current_task_line)
-        t.start()
+        thread = threading.Timer(5, self._cts_update_current_task_line)
+        thread.start()
 
     def _cts_update_daily_total_line(self):
         self._update_daily_total_line()
-        t = threading.Timer(31, self._cts_update_daily_total_line)
-        t.start()
+        thread = threading.Timer(31, self._cts_update_daily_total_line)
+        thread.start()
+
 
 if __name__ == "__main__":
     timewd = TimeWD()
