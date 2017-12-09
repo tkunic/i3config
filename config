@@ -173,7 +173,7 @@ bindsym $mod+l exec i3lock -i /usr/share/backgrounds/warty-final-ubuntu.png
 exec --no-startup-id nm-applet
 
 # tk_ caps lock to $mod
-exec setxkbmap -option caps:super
+exec --no-startup-id setxkbmap -option caps:super
 
 # tk_ add application shortcuts
 bindsym $mod+Control+period exec nautilus --no-desktop
@@ -182,3 +182,6 @@ bindsym $mod+Control+o exec XDG_CURRENT_DESKTOP=Unity:Unity7 unity-control-cente
 # tk_ move workspaces between monitors
 bindsym $mod+Control+Shift+h move workspace to output left
 bindsym $mod+Control+Shift+s move workspace to output right
+
+# tk_ synclient instead of xorg.conf.d to persist across distro upgrades
+exec --no-startup-id synclient HorizTwoFingerScroll=1 PalmDetect=1 HorizScrollDelta=-99 VertScrollDelta=-99 HorizScrollDelta=-99 VertScrollDelta=-99 MaxTapTime=0 MaxDoubleTapTime=0
