@@ -66,11 +66,13 @@ class TimeWD(object):
     def _cts_update_current_task_line(self):
         self._update_current_task_line()
         thread = threading.Timer(5, self._cts_update_current_task_line)
+        thread.daemon = True
         thread.start()
 
     def _cts_update_daily_total_line(self):
         self._update_daily_total_line()
         thread = threading.Timer(31, self._cts_update_daily_total_line)
+        thread.daemon = True
         thread.start()
 
 
