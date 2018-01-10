@@ -103,7 +103,7 @@ if __name__ == '__main__':
         j[4]['color'] = COLOR_BLUE
 
         # TimeWarrior prefix
-        j.insert(0, {'full_text': timewd.get_current_task_line(), 'name': 'timew'})
+        j.insert(0, {'full_text': timewd.get_task_line(), 'name': 'timew'})
 
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
